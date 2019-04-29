@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <script type="text/javascript" src="escapement_2d_generate.js"></script>
+        <script type="text/javascript">
+            window.onload = function() {
+        
+                var wheel_points = generate_wheel(.3, 30);
+                var anchor_points = generate_anchor(.3, 30).points;
+                
+                var canvas = document.getElementById("drawing_canvas");
+                canvas.width = document.body.clientWidth; //document.width is obsolete
+                canvas.height = document.body.clientHeight; //document.height is obsolete
+
+                var ctx = canvas.getContext("2d");
+                ctx.moveTo(wheel_points[0].x*40+300, wheel_points[0].y*40+300);
+                for (var i = 1; i < wheel_points.length; i++) {
+                    ctx.lineTo(wheel_points[i].x*40+300, wheel_points[i].y*40+300);
+                }
+                ctx.lineTo(wheel_points[0].x*40+300, wheel_points[0].y*40+300);
+
+                ctx.moveTo(anchor_points[0].x*40+300, anchor_points[0].y*40+300);
+                for (var i = 1; i < anchor_points.length; i++) {
+                    ctx.lineTo(anchor_points[i].x*40+300, anchor_points[i].y*40+300);
+                }
+                //ctx.lineTo(points[0].x*40+300, points[0].y*40+300);
+
+
+                ctx.stroke();
+            };
+        </script>
+    </head>
+    <body>
+        <canvas id="drawing_canvas"></canvas>
+    </body>
+</html>
